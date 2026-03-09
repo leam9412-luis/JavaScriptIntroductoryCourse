@@ -4,89 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Liquidación Laboral Colombia 2025</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 600px;
-            width: 100%;
-        }
-        h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #34495e;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #bdc3c7;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #27ae60;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #219150;
-        }
-        .results {
-            margin-top: 30px;
-            border-top: 2px solid #ecf0f1;
-            padding-top: 20px;
-            display: none; /* Oculto al inicio */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #34495e;
-            color: white;
-        }
-        .total-row {
-            font-weight: bold;
-            font-size: 1.1em;
-            background-color: #e8f8f5;
-        }
-        .note {
-            font-size: 0.85em;
-            color: #7f8c8d;
-            margin-top: 15px;
-            background: #fdfefe;
-            padding: 10px;
-            border-left: 4px solid #3498db;
-        }
-    </style>
+    <link rel="stylesheet" href="proyect.css">
 </head>
+<body>
+    <div class="container">
+    <h2>🇨🇴 Liquidación Laboral 2025</h2>
+
+    <div class="form-group">
+        <label>Fecha de Inicio:</label>
+        <input type="date" id="startDate">
+    </div>
+
+    <div class="form-group">
+        <label>Fecha de Retiro:</label>
+        <input type="date" id="endDate">
+    </div>
+
+    <div class="form-group">
+        <label>Salario Básico Mensual (SMMLV 2025: $1.423.500):</label>
+        <input type="number" id="salary" value="1423500" min="0">
+    </div>
+
+    <div class="form-group">
+        <label>Bonos y Horas Extra (Suma total):</label>
+        <input type="number" id="bonuses" value="0" min="0">
+    </div>
+
+    <button onclick="calcularLiquidacion()">CALCULAR LIQUIDACIÓN</button>
+
+    <div id="results" class="results">
+        <h3>Desglose de Pagos</h3>
+        <table>
+            <tr>
+                <th>Concepto</th>
+                <th>Días / Valor</th>
+                <th>Total a Pagar</th>
+            </tr>
+            <tr>
+                <td>Días Trabajados</td>
+                <td id="daysWorked">-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Cesantías (1 mes/año)</td>
+                <td>Salario / 360 * Días</td>
+                <td id="valCesantias">$0</td>
+            </tr>
+            <tr>
+                <td>Intereses Cesantías (12%)</td>
+                <td>Cesantías * 12% * (Días/360)</td>
+                <td id="valIntereses">$0</td>
+            </tr>
+            <tr>
+                <td>Primas de Servicios (1 mes/año)</td>
+                <td>Salario / 360 * Días</td>
+                <td id="valPrimas">$0</td>
+            </tr>
+            <tr>
+                <td>Vacaciones (15 días/año)</td>
+                <td>Salario / 720 * Días</td>
+                <td id="valVacaciones">$0</td>
+            </tr>
+            <tr class="total-row">
+                <td>TOTAL PRESTACIONES</td>
+                <td></td>
+                <td id="valTotal">$0</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Nota:</strong> Este cálculo sigue el Código Sustantivo del Trabajo (CST). 
+            El Auxilio de Transporte ($162.000) NO se incluye en la base de cálculo para prestaciones sociales.
+        </div>
+    </div>
+</div>
+</body>
