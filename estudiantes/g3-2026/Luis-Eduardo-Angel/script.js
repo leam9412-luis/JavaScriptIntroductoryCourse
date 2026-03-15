@@ -44,15 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Verificar si ya existe en el carrito
             const existingItem = cart.find(item => item.id === id);
-            
+
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
                 cart.push({ id, name, price, quantity: 1 });
             }
-            
+
             updateCartUI();
-            
+
             // Pequeña animación visual al añadir
             cartSidebar.classList.add('open');
             setTimeout(() => cartSidebar.classList.remove('open'), 1500);
